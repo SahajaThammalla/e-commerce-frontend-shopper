@@ -14,7 +14,7 @@ const getDefaultCart =()=>{
     return cart;
 }
 const ShopContextProvider = (props) => {
-    const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [cartItems, setCartItems, setData] = useState(getDefaultCart());
     
     useEffect(() => {
         fetch('https://e-commerce-backend-shopper-0i4k.onrender.com') // <-- Update this URL
