@@ -1,7 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect, useState } from "react";
 import all_product from "../Components/Assets/all_product";
 
 export const ShopContext = createContext(null);
+
+
+
+
 const getDefaultCart =()=>{
     let cart ={};
     for(let index = 0 ; index < all_product.length+1; index++){
@@ -12,6 +16,12 @@ const getDefaultCart =()=>{
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
     
+    useEffect(() => {
+        fetch('https://e-commerce-backend-shopper-0i4k.onrender.com') // <-- Update this URL
+          .then(response => response.json())
+          .then(data => setData(data))
+          .catch(error => console.error(error));
+      }, []);
     
     const addToCart = (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
